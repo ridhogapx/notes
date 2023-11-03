@@ -13,5 +13,5 @@ func NewNotesController(r *gin.Engine) *notesController {
 }
 
 func (controller *notesController) Home() {
-  controller.R.Static("/", "./view")
+  controller.R.Static("/", "./view") 
 }
