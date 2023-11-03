@@ -3,6 +3,7 @@ package controller
 import (
 	"net/http"
 
+	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,12 +18,8 @@ func NewNotesController(r *gin.Engine) *notesController {
 }
 
 func (controller *notesController) Init() {
-  controller.Home()
+  controller.R.Use(static.Serve("/", static.LocalFile("view/", true)))
   controller.R.GET("/api/foo", controller.Ping)
-}
-
-func (controller *notesController) Home() {
-  controller.R.Static("/", "./view") 
 }
 
 func (controller *notesController) Ping(ctx *gin.Context) {
