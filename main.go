@@ -11,7 +11,7 @@ func main() {
   
   // Inject controller dependency
   notesController := controller.NewNotesController(r)
-  notesController.Home()
+  notesController.Init()
 
   r.Run(":8080")
 }
