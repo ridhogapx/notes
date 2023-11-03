@@ -1,13 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"notes-v1/controller"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	fmt.Println("Server is running")
   r := gin.Default()
+  
+  // Inject controller dependency
+  notesController := controller.NewNotesController(r)
+  notesController.Home()
+
   r.Run(":8080")
 }
