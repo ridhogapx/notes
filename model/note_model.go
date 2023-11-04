@@ -14,10 +14,12 @@ type Notes struct {
 	CreatedAt time.Time
 }
 
+type NoteModel interface {
+  CreateNote(*Notes) error
+  FindNote(id string) (*Notes, error)
+}
+
 type notesModelImpl struct {
   DB *gorm.DB 
 }
 
-func (db *notesModelImpl) CreateNote() {
-  
-}
