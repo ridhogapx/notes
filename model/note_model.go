@@ -1,6 +1,10 @@
 package model
 
-import "time"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 type Notes struct {
 	ID        string `gorm:"primaryKey"`
@@ -8,4 +12,12 @@ type Notes struct {
 	Body      string
 	IsDone    bool
 	CreatedAt time.Time
+}
+
+type notesModelImpl struct {
+  DB *gorm.DB 
+}
+
+func (db *notesModelImpl) CreateNote() {
+  
 }
