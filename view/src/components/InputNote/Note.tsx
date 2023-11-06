@@ -1,7 +1,7 @@
 import NoteTitle from "./Title"
 import NoteBody from "./Body"
 
-const Note = () => {
+const NoteInput = () => {
    return (
      <div className="input-container">
       <NoteTitle />
@@ -10,4 +10,4 @@ const Note = () => {
    )
  }
 
- export default Note
+ export default NoteInput

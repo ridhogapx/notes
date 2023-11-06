@@ -3,13 +3,13 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/public/vite.svg'
 import './App.css'
 import Navbar from "./components/Navbar/Navbar"
-import Note from "./components/InputNote/Note"
+import NoteInput from "./components/InputNote/Note"
 
 function App() { 
   return (
     <>
      <Navbar /> 
-     <Note />
+     <NoteInput />
     </>
   )
 }
