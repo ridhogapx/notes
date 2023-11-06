@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar/Navbar"
 function App() { 
   return (
     <>
-    <Navbar />
+     <Navbar />
      <h2>Hello world</h2> 
     </>
   )

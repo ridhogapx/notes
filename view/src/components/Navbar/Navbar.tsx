@@ -1,9 +1,11 @@
 const Navbar = () => {
+
   return(
-    <nav className="navbar">
-      <h2>Note App</>
+    <nav>
+      <h2 className="navbar">Note App</h2>
     </nav>
   )
+
 }
 
 export default Navbar
