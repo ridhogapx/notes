@@ -34,3 +34,27 @@
   border: none;
   outline: none;
 }
+
+.save-note {
+  display: block;
+  border: none;
+  outline: none;
+  padding: 12px 35px;
+  border-radius: 8px;
+  background: #fff; 
+  float:right;
+  font-size: 15px;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+  transition-delay: 0.02s;
+}
+
+.save-note:hover {
+  background: #B2C8BA;
+  color: #fff;
+}
+
+.clear {
+  clear: both;
+}
