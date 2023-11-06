@@ -1,8 +1,8 @@
 const Navbar = () => {
 
   return(
-    <nav>
-      <h2 className="navbar">Note App</h2>
+    <nav className="navbar">
+      <h2 className="app-title">Note App</h2>
     </nav>
   )
 
