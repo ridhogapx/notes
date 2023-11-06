@@ -1,17 +1,26 @@
 package main
 
 import (
-	"notes-v1/controller"
+	"log"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
   r := gin.Default()
-  
+
+  // Load environment variable 
+  err := godotenv.Load(".env")
+
+  if err != nil {
+    log.Fatal("Failed to load .env")
+  }
+
+  // Inject model dependency
+
   // Inject controller dependency
-  notesController := controller.NewNotesController(r)
-  notesController.Init()
+
 
   r.Run(":8080")
 }
