@@ -1,5 +1,11 @@
 .navbar {
-  margin: 8px;
-  color: white;
-  background: #D0A2F7;
+  width: 100%;
+  padding: 4px;
+  color: #fff;
+  background: #39A7FF;
+}
+
+.app-title {
+  font-size: 20px;
+  margin: 15px 35px;
 }
