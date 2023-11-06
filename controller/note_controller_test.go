@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func GetSingleNote(data *model.Notes) *model.Notes {
+func GetSingleNote(data *model.Note) *model.Note {
   return data
 }
 
@@ -15,7 +15,7 @@ func TestNoteController(t *testing.T) {
   m := new(model.MockNoteModel)
   
   // Setup expectation
-  m.On("FindNote", "id-note-foo-bar").Return(&model.Notes{
+  m.On("FindNote", "id-note-foo-bar").Return(&model.Note{
     ID: "id-note-foo-bar",
     Title: "Foo",
     Body: "Bar",
