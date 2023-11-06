@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type Notes struct {
+type Note struct {
 	ID        string `gorm:"primaryKey"`
 	Title     string
 	Body      string
@@ -15,11 +15,28 @@ type Notes struct {
 }
 
 type NoteModel interface {
-  CreateNote(*Notes) error
-  FindNote(id string) (*Notes, error)
+  CreateNote(*Note) error
+  FindNote(id string) (*Note, error)
 }
 
-type notesModelImpl struct {
+type noteModelImpl struct {
   DB *gorm.DB 
 }
+
+func NewNoteModel(db *gorm.DB) NoteModel {
+  return &noteModelImpl{
+    DB: db,
+  }
+}
+
+func (note *noteModelImpl) CreateNote(data *Note) error {
+  exec := note.DB.Create(data)
+
+  if exec.Error != nil {
+    return exec.Error
+  }
+
+  return nil
+}
+
 
