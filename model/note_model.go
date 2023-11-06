@@ -39,4 +39,13 @@ func (note *noteModelImpl) CreateNote(data *Note) error {
   return nil
 }
 
+func (note *noteModelImpl) FindNote(id string) (*Note, error) {
+  var data Note
+  exec := note.DB.Where("id = ?", id).First(&data)
 
+  if exec.Error != nil {
+    return nil, exec.Error
+  }
+
+  return &data, nil
+}
