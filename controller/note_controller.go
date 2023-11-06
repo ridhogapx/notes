@@ -12,6 +12,12 @@ type NoteController struct {
   Model model.NoteModel
 }
 
+type WebModel struct {
+  Title string `json:"title"`
+  Body string `json:"body"`
+  IsDone bool `json:"is_done"`
+}
+
 func NewNoteController(model model.NoteModel) *NoteController {
   return &NoteController{
     Model: model,
