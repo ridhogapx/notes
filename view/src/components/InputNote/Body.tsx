@@ -1,6 +1,6 @@
 const NoteBody = () => {
   return(
-    <input type="text" placeholder="Add your note here..." />
+    <input className="note-body" type="text" placeholder="Add your note here..." />
   )
 }
 
