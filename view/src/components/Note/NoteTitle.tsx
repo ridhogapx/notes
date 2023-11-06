@@ -1,4 +1,4 @@
-const NoteInput = () => {
+const NoteTitle = () => {
   return (
     <div className="input-container">
       <input className="note-input" type="text" placeholder="Add your note here..." /> 
@@ -6,4 +6,4 @@ const NoteInput = () => {
   )
 }
 
-export default NoteInput
+export default NoteTitle
