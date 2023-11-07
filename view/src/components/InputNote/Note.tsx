@@ -5,7 +5,7 @@ import SaveNote from "./Save"
 const NoteInput = () => {
    return (
      <div className="input-container">
-      <NoteTitle />
+      <NoteTitle title="Title" />
       <NoteBody />
       <SaveNote title="Save" />
       <div className="clear"></div>

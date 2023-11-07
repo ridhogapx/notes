@@ -1,6 +1,6 @@
-const NoteTitle = () => {
+const NoteTitle = (props) => {
   return ( 
-      <input className="note-title" type="text" placeholder="Title" />
+      <input className="note-title" type="text" placeholder={props.title} />
   )
 }
 
