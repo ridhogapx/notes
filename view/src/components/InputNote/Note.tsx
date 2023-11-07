@@ -16,18 +16,27 @@ const NoteInput = () => {
       body: "",
     }) 
 
-  const handleOnChange = (e: any) => {
+  const handleOnChange = (e) => {
     setNote({
       ...note,
       [e.target.name]: e.target.value
       })
   }
 
+  const handleSave = async(e) => {
+    const res = await axios.post("http://localhost:8080/api/v1/note", {
+      title: note.title,
+      body: note.body,
+    })
+
+    console.log(res.data)
+  }
+
    return (
      <div className="input-container">
       <NoteTitle title="Title" val={note.title} handler={ handleOnChange}/>
       <NoteBody handler={ handleOnChange } val={ note.body} />
-      <SaveNote title="Save" handler={() => { console.log("foo")}} />
+      <SaveNote title="Save" handler={ handleSave } />
       <div className="clear"></div>
     </div>
    )
