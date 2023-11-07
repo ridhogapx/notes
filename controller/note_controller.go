@@ -1,8 +1,11 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 	"notes-v1/model"
+	"os/exec"
+	"time"
 
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
@@ -33,4 +36,35 @@ func (controller *NoteController) Ping(ctx *gin.Context) {
   ctx.JSON(http.StatusOK, gin.H{
     "message": "Bar",
   })
+}
+
+func (controller *NoteController) AddNote(ctx *gin.Context) {
+   var data WebModel 
+
+   ctx.ShouldBind(&data)
+  
+  // Generate Unique ID 
+  id, _ := exec.Command("uuidgen").Output()
+  
+   err := controller.Model.CreateNote(&model.Note{
+    ID: string(id),
+    Title: data.Title,
+    Body: data.Body,
+    IsDone: false,
+    CreatedAt: time.Now(),
+   })
+
+   if err != nil {
+      fmt.Println("Failed to create note:", err)
+      ctx.JSON(http.StatusInternalServerError, gin.H{
+        "status" : "failure",
+        "message" : "Failed to create note because internal server error",  
+      })
+      return
+   }
+
+   ctx.JSON(http.StatusCreated, gin.H{
+     "status" : "success",
+     "message" : "Successfully adding note",
+   })
 }
