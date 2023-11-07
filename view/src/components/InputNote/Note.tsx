@@ -4,6 +4,7 @@ import axios from "axios"
 import NoteTitle from "./Title"
 import NoteBody from "./Body"
 import SaveNote from "./Save"
+import PopupMessage from "../Popup/Message"
 
 interface noteData {
   title: string, 
@@ -34,6 +35,7 @@ const NoteInput = () => {
 
    return (
      <div className="input-container">
+      <PopupMessage msg="Hello" />
       <NoteTitle title="Title" val={note.title} handler={ handleOnChange}/>
       <NoteBody handler={ handleOnChange } val={ note.body} />
       <SaveNote title="Save" handler={ handleSave } />
