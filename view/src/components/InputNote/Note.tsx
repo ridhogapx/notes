@@ -24,7 +24,7 @@ const NoteInput = () => {
   }
 
   const handleSave = async(e) => {
-    const res = await axios.post("http://localhost:8080/api/v1/note", {
+    const res = await axios.post("/api/v1/note", {
       title: note.title,
       body: note.body,
     })
