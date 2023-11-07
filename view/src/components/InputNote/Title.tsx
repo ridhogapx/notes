@@ -1,6 +1,6 @@
 const NoteTitle = (props) => {
   return ( 
-      <input className="note-title" type="text" placeholder={props.title} />
+      <input className="note-title" type="text" name="title" placeholder={props.title} value={ props.val} onChange={ props.handler} />
   )
 }
 
