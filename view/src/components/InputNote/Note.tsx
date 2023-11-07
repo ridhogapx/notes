@@ -7,7 +7,7 @@ const NoteInput = () => {
      <div className="input-container">
       <NoteTitle title="Title" />
       <NoteBody />
-      <SaveNote title="Save" />
+      <SaveNote title="Save" handler={() => { console.log("foo")}} />
       <div className="clear"></div>
     </div>
    )

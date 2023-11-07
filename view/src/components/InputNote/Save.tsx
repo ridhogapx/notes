@@ -1,10 +1,11 @@
 interface saveProps {
-  title: string
+  title: string,
+  handler: (e: any) => void 
 }
 
 const SaveNote = (props: saveProps) => {
   return (
-    <button className="save-note">{ props.title }</button>
+    <button className="save-note" onClick={ props.handler }>{ props.title }</button>
   )
 }
 
