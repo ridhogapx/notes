@@ -1,6 +1,10 @@
-const SaveNote = () => {
+interface saveProps {
+  title: string
+}
+
+const SaveNote = (props: saveProps) => {
   return (
-    <button className="save-note">Save</button>
+    <button className="save-note">{ props.title }</button>
   )
 }
 

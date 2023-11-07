@@ -7,7 +7,7 @@ const NoteInput = () => {
      <div className="input-container">
       <NoteTitle />
       <NoteBody />
-      <SaveNote />
+      <SaveNote title="Save" />
       <div className="clear"></div>
     </div>
    )
