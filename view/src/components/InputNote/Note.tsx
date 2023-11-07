@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
+import toastr from "toastr"
 
 import NoteTitle from "./Title"
 import NoteBody from "./Body"
@@ -29,7 +30,7 @@ const NoteInput = () => {
       body: note.body,
     })
 
-    console.log(res.data)
+    toastr.success(res.data.message)
   }
 
    return (
