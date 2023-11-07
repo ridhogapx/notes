@@ -5,6 +5,7 @@ import toastr from "toastr"
 import NoteTitle from "./Title"
 import NoteBody from "./Body"
 import SaveNote from "./Save"
+import ClearNote from "./Clear"
 
 interface noteData {
   title: string, 
@@ -37,6 +38,7 @@ const NoteInput = () => {
      <div className="input-container">
       <NoteTitle title="Title" val={note.title} handler={ handleOnChange}/>
       <NoteBody handler={ handleOnChange } val={ note.body} />
+      <ClearNote handler={() =>  console.log("Foo")   }/>
       <SaveNote title="Save" handler={ handleSave } />
       <div className="clear"></div>
     </div>

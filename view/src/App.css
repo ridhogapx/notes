@@ -58,3 +58,21 @@
 .clear {
   clear: both;
 }
+
+.clear-note {
+  float: right;
+  outline: none;
+  border: none;
+  padding: 12px 35px;
+  border-radius: 8px;
+  background: #fff; 
+  font-size: 15px;
+  transition-property: all; 
+  transition-duration: 0.3s; 
+  transition-timing-function: linear; 
+  transition-delay: 0.02s;
+}
+
+.clear-note:hover {
+  background: #FA7070; 
+}
