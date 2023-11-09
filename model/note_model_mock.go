@@ -15,9 +15,9 @@ func (m *MockNoteModel) CreateNote(data *Note) error {
   return arg.Error(0)
 }
 
-func (m *MockNoteModel) FindNote(id string) (*Note, error) {
+func (m *MockNoteModel) FindNote(id string) (*[]Note, error) {
   arg := m.Called(id)
   
-  res := arg.Get(0).(Note)
+  res := arg.Get(0).([]Note)
   return &res, arg.Error(0)
 }  
