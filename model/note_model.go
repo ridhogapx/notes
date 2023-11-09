@@ -16,7 +16,7 @@ type Note struct {
 
 type NoteModel interface {
   CreateNote(*Note) error
-  FindNote(id string) (*Note, error)
+  FindNote(id string) (*[]Note, error)
 }
 
 type noteModelImpl struct {
@@ -39,9 +39,9 @@ func (note *noteModelImpl) CreateNote(data *Note) error {
   return nil
 }
 
-func (note *noteModelImpl) FindNote(id string) (*Note, error) {
-  var data Note
-  exec := note.DB.Where("id = ?", id).First(&data)
+func (note *noteModelImpl) FindNote(id string) (*[]Note, error) {
+  var data []Note
+  exec := note.DB.Where("id = ?", id).Find(&data)
 
   if exec.Error != nil {
     return nil, exec.Error
