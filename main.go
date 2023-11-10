@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"notes-v1/config"
 	"notes-v1/controller"
@@ -32,6 +33,6 @@ func main() {
   noteController := controller.NewNoteController(noteModel)
   noteController.Route(r)
 
-
+  fmt.Println("Server is running on port 8080")
   r.Run(":8080")
 }
