@@ -1,9 +1,10 @@
 package config
 
 import (
+	"context"
 	"fmt"
-
 	"notes-v1/model"
+	"time"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -12,16 +13,18 @@ import (
 func NewDBConn(source string) *gorm.DB {
 	db, err := gorm.Open(postgres.Open(source), &gorm.Config{})
 
+  // Setup context time out
+  ctx, cancel := context.WithTimeout(context.Background(), 5 * time.Second)
+  defer cancel()
+
+  tx := db.WithContext(ctx)
+
   if err != nil {
     fmt.Println("Failed to connect database", err)
     return nil
   }
-  
-  err = db.AutoMigrate(&model.Note{})
+ 
+  tx.AutoMigrate(&model.Note{})
 
-  if err != nil {
-    fmt.Println("Failed to migrate database")
-    return nil
-  }
-  return db
+  return tx
 }

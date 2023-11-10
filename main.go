@@ -26,7 +26,7 @@ func main() {
   DB_SOURCE := os.Getenv("DB_SOURCE")
   db := config.NewDBConn(DB_SOURCE)
 
-  // Inject model dependency
+ // Inject model dependency
   noteModel := model.NewNoteModel(db)
 
   // Inject controller dependency
