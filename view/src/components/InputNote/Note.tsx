@@ -18,23 +18,32 @@ const NoteInput = () => {
       body: "",
     }) 
 
-  const handleOnChange = (e) => {
+  const handleOnChange = (e): void => {
     setNote({
       ...note,
       [e.target.name]: e.target.value
       })
   }
 
-  const handleSave = async(e) => {
+  const handleSave = async(e): void => {
     const res = await axios.post("/api/v1/note", {
       title: note.title,
       body: note.body,
     })
 
+    if (res.data.message == "failure") {
+      toastr.warning(res.data.message)
+      return 
+    }
+
     toastr.success(res.data.message)
+    setNote({
+        title: "",
+        body: "",
+      })
   }
 
-  const handlerClear = () => {
+  const handleClear = () => {
     setNote({
         title: "",
         body: "",
@@ -45,7 +54,7 @@ const NoteInput = () => {
      <div className="input-container">
       <NoteTitle title="Title" val={note.title} handler={ handleOnChange}/>
       <NoteBody handler={ handleOnChange } val={ note.body} />
-      <ClearNote handler={ handlerClear } />
+      <ClearNote handler={ handleClear } />
       <SaveNote title="Save" handler={ handleSave } />
       <div className="clear"></div>
     </div>
