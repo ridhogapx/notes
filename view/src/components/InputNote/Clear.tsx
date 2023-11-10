@@ -1,6 +1,6 @@
 const ClearNote = (props) => {
   return(
-    <button onClick={ props.handler }>Clear</button>
+    <button className="clear-note" onClick={ props.handler }>Clear</button>
   )
 }
 
