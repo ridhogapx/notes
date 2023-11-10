@@ -30,6 +30,7 @@ func (controller *NoteController) Route(app *gin.Engine) {
   app.Use(static.Serve("/", static.LocalFile("view/", true)))
   app.GET("/api/foo", controller.Ping)
   app.POST("/api/v1/note", controller.AddNote)
+  app.GET("/api/v1/notes", controller.GetNotes)
 }
 
 func (controller *NoteController) Ping(ctx *gin.Context) {
