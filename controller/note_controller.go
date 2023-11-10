@@ -68,3 +68,22 @@ func (controller *NoteController) AddNote(ctx *gin.Context) {
      "message" : "Successfully adding note",
    })
 }
+
+func (controller *NoteController) GetNotes(ctx *gin.Context) {
+  res, err := controller.Model.FindNotes()
+  
+  if err != nil {
+    ctx.JSON(http.StatusNotFound, gin.H{
+      "status" : "failure",
+      "message" : "Data is not found",
+    })
+    return
+  }
+
+  ctx.JSON(http.StatusOK, gin.H{
+    "status" : "success",
+    "message" : "Successfully retrieve note data",
+    "data" : res,
+  })
+
+}
