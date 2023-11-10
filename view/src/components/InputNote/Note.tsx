@@ -26,6 +26,16 @@ const NoteInput = () => {
   }
 
   const handleSave = async(e): void => {
+    if (note.title == "") {
+      toastr.warning("Title is not allowed empty") 
+      return
+    }
+
+    if (note.body == "") {
+      toastr.warning("Note body is not allowed empty")
+      return
+    }
+
     const res = await axios.post("/api/v1/note", {
       title: note.title,
       body: note.body,
