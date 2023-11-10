@@ -34,11 +34,18 @@ const NoteInput = () => {
     toastr.success(res.data.message)
   }
 
+  const handlerClear = () => {
+    setNote({
+        title: "",
+        body: "",
+      })
+  }
+
    return (
      <div className="input-container">
       <NoteTitle title="Title" val={note.title} handler={ handleOnChange}/>
       <NoteBody handler={ handleOnChange } val={ note.body} />
-      <ClearNote handler={() =>  console.log("Foo")   }/>
+      <ClearNote handler={ handlerClear } />
       <SaveNote title="Save" handler={ handleSave } />
       <div className="clear"></div>
     </div>
