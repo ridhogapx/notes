@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"notes/model"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -14,6 +15,8 @@ func NewDBConnection(source string) *gorm.DB {
     fmt.Println("Failed to connect database:", err)
     return nil
   }
+
+  db.AutoMigrate(&model.User{})
 
   return db
 }

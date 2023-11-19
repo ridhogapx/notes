@@ -1,6 +1,6 @@
 package model 
 
-type AuthModel struct {
+type User struct {
   ID string
   Email string 
   Password string 
