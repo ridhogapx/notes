@@ -27,6 +27,8 @@ func main() {
   authRepos := repository.NewAuthRepository(dbConn)
   authController := controller.NewAuthController(authRepos)
 
+  r.LoadHTMLGlob("views/*")
+
   authController.Routes(r)
 
   r.Run(":3000")
