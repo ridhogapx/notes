@@ -1,17 +1,33 @@
 package main
 
 import (
+	"fmt"
+	"notes/config"
+	"notes/controller"
+	"notes/repository"
+	"os"
+
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+  err := godotenv.Load(".env")
+
+  if err != nil {
+    fmt.Println("Failed to load .env")
+    return
+  }
+
   r := gin.Default()
 
-  r.GET("/", func(ctx *gin.Context) {
-    ctx.JSON(200, gin.H{
-      "message" : "hello world",
-    })
-  })
+  DB_SOURCE := os.Getenv("DB_SOURCE")
+  
+  dbConn := config.NewDBConnection(DB_SOURCE)
+  authRepos := repository.NewAuthRepository(dbConn)
+  authController := controller.NewAuthController(authRepos)
+
+  authController.Routes(r)
 
   r.Run(":3000")
 }
