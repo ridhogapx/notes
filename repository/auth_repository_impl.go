@@ -25,3 +25,15 @@ func (repo *authRepositoryImpl) CreateUser(user *model.User) error {
 
   return nil
 }
+
+func (repo *authRepositoryImpl) FindUser(email string) (*model.User, error) {
+  var user model.User
+
+  exec := repo.q.Where("email = ?", email).First(&user)
+  
+  if exec.Error != nil {
+    return nil, exec.Error
+  }
+
+  return &user, nil
+}
