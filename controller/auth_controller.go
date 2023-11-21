@@ -1,6 +1,11 @@
 package controller
 
-import "notes/repository"
+import (
+	"net/http"
+	"notes/repository"
+
+	"github.com/gin-gonic/gin"
+)
 
 type AuthController struct {
   Repos repository.AuthRepository
@@ -12,3 +17,13 @@ func NewAuthController(repos repository.AuthRepository) *AuthController {
   }
 }
 
+
+func (controller *AuthController) Routes(r *gin.Engine) {
+  r.GET("/signup", controller.SignUp) 
+}
+
+func (controller *AuthController) SignUp(ctx *gin.Context) {
+  ctx.HTML(http.StatusOK, "signup.tmpl", gin.H{
+    "title" : "Sign Up - Notes",
+  })
+}
