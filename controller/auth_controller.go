@@ -23,7 +23,7 @@ func (controller *AuthController) Routes(r *gin.Engine) {
 }
 
 func (controller *AuthController) SignUp(ctx *gin.Context) {
-  ctx.HTML(http.StatusOK, "signup.tmpl", gin.H{
+  ctx.HTML(http.StatusOK, "signup.html", gin.H{
     "title" : "Sign Up - Notes",
   })
 }
