@@ -4,9 +4,10 @@
     <title>{{ .title }}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{ .style}}" rel="stylesheet">
   </head>
   <body>
-    <h2>Sign Up</h2> 
+    <h2>Sign Up</h2>
+    <script src="{{ .script }}"></script>
   </body>
 </html>
