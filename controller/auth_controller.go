@@ -1,7 +1,9 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
+	"notes/model"
 	"notes/repository"
 
 	"github.com/gin-gonic/gin"
@@ -32,4 +34,19 @@ func (controller *AuthController) SignUpView(ctx *gin.Context) {
 		"style":  BootstrapCSS,
 		"script": BootstrapJS,
 	})
+}
+
+func (controller *AuthController) SignUp(ctx *gin.Context) {
+	var payload model.AuthRequest
+
+	err := ctx.ShouldBind(&payload)
+
+	if err != nil {
+		fmt.Println("Request should be in JSON format!", err)
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"message": "Payload should be in JSON",
+		})
+		return
+	}
+
 }
