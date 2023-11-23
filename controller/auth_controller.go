@@ -3,6 +3,7 @@ package controller
 import (
 	"fmt"
 	"net/http"
+	"notes/helper"
 	"notes/model"
 	"notes/repository"
 
@@ -62,9 +63,13 @@ func (controller *AuthController) SignUp(ctx *gin.Context) {
 	}
 
 	// If not yet, then user can register
+
+	// We need to hash password before insert into database.
+	hash := helper.HashPassword(payload.Password)
+
 	err = controller.Repos.CreateUser(&model.User{
 		Email:    payload.Email,
-		Password: payload.Password,
+		Password: hash,
 	})
 
 	// Internal logging
