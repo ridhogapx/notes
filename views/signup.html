@@ -20,19 +20,22 @@
         <div class="col">
           <div class="card p-3" style="width: 25rem; margin: 0 auto;">
             <div class="card-body">
-              <h5 class="card-title text-center">Sign Up</h5>
+              <h5 class="card-title text-center fw-bold">Sign Up</h5>
               <form>
                 <div class="mb-3">
-                  <label for="email" class="form-label">Email address</label>
-                  <input type="email" class="form-control" name="email">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email">
+                  <p class="form-text">Kami akan menjaga data privasi email kamu!</p>
                 </div>
                 <div class="mb-3">
                   <label for="pass" class="form-label">Password</label>
-                  <input type="password" class="form-control" name="pass">
+                  <input type="password" class="form-control" id="pass">
+                  <p class="form-text">Pastikan buat password yang kuat dan sulit ditebak! Minimal password terdiri dari 8 karakter.</p>
                 </div>
                 <div class="mb-3">
-                  <label for="confpass" class="form-label">Confirmation Password</label>
-                  <input type="password" class="form-control" name="confpass">
+                  <label for="confpass" class="form-label">Konfirmasi Password</label>
+                  <input type="password" class="form-control" id="confpass">
+                  <p class="form-text">Konfirmasikan ulang password yang sudah kamu buat.</p>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
               </form>
@@ -42,5 +45,16 @@
       </div>
     </div>
     <script src="{{ .script }}"></script>
+    <script>
+      const formData = {
+        email: document.getElementById("email"),
+        password: document.getElementById("pass"),
+        confpass: document.getElementById("confpass")
+      }
+
+      if (formData.confpass !== formData.password) {
+          
+      }
+    </script>
   </body>
 </html>
