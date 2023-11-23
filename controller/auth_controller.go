@@ -49,4 +49,28 @@ func (controller *AuthController) SignUp(ctx *gin.Context) {
 		return
 	}
 
+	// Check if user is already registered
+	_, err = controller.Repos.FindUser(payload.Email)
+
+	if err == nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"status":  "failure",
+			"message": "Email is already registered",
+		})
+
+		return
+	}
+
+	// If not yet, then user can register
+	err = controller.Repos.CreateUser(&model.User{
+		Email:    payload.Email,
+		Password: payload.Password,
+	})
+
+	// Internal logging
+	if err != nil {
+		fmt.Println("Failed to create user", err)
+		return
+	}
+
 }
