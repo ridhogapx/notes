@@ -17,6 +17,7 @@ type AuthController struct {
 const (
 	BootstrapCSS = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	BootstrapJS  = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+	PopperJS     = "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 )
 
 func NewAuthController(repos repository.AuthRepository) *AuthController {
@@ -34,6 +35,7 @@ func (controller *AuthController) SignUpView(ctx *gin.Context) {
 		"title":  "Sign Up - Notes",
 		"style":  BootstrapCSS,
 		"script": BootstrapJS,
+		"popper": PopperJS,
 	})
 }
 
