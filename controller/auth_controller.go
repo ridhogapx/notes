@@ -28,6 +28,7 @@ func NewAuthController(repos repository.AuthRepository) *AuthController {
 
 func (controller *AuthController) Routes(r *gin.Engine) {
 	r.GET("/signup", controller.SignUpView)
+	r.GET("/", controller.NotesView)
 	r.POST("/signup", controller.SignUp)
 }
 
@@ -37,6 +38,12 @@ func (controller *AuthController) SignUpView(ctx *gin.Context) {
 		"style":  BootstrapCSS,
 		"script": BootstrapJS,
 		"popper": PopperJS,
+	})
+}
+
+func (controller *AuthController) NotesView(ctx *gin.Context) {
+	ctx.HTML(http.StatusOK, "me.html", gin.H{
+		"title": "My Notes",
 	})
 }
 
