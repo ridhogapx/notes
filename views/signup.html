@@ -62,9 +62,9 @@
     <script src="{{ .script }}"></script>
     <script>
       const formData = {
-        email: document.getElementById("email"),
-        password: document.getElementById("pass"),
-        confpass: document.getElementById("confpass")
+        email: document.getElementById("email").value,
+        password: document.getElementById("pass").value,
+        confpass: document.getElementById("confpass").value
       }
 
       const toastElement = document.getElementById("msgToast")
@@ -75,7 +75,7 @@
       btn.addEventListener("click", async(e) => {
       e.preventDefault()
 
-      if (formData.confpass !== formData.password) {
+      if (formData.confpass != formData.password) {
           titleToaster.innerText = "Gagal mendaftarkan user"
           msgToaster.innerText = "Mohon konfirmasikan ulang password anda"
 
@@ -95,7 +95,7 @@
           })
         })
 
-        
+        console.log(doSignUp.json())
       })
 
     </script>
