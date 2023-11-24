@@ -81,4 +81,9 @@ func (controller *AuthController) SignUp(ctx *gin.Context) {
 		return
 	}
 
+	ctx.JSON(http.StatusCreated, gin.H{
+		"status":  "success",
+		"message": "Berhasil mendaftar user",
+	})
+
 }
