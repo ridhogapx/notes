@@ -72,7 +72,7 @@
       const msgToaster = document.getElementById("msg-toaster")
 
       const btn = document.getElementById("btn")
-      btn.addEventListener("click", (e) => {
+      btn.addEventListener("click", async(e) => {
       e.preventDefault()
 
       if (formData.confpass !== formData.password) {
@@ -81,7 +81,21 @@
 
           const toast = bootstrap.Toast.getOrCreateInstance(toastElement)
           toast.show()
+          return
         }
+
+        const doSignUp = await fetch("/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type" : "application/json"
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password
+          })
+        })
+
+        
       })
 
     </script>
