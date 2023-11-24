@@ -28,6 +28,7 @@ func NewAuthController(repos repository.AuthRepository) *AuthController {
 
 func (controller *AuthController) Routes(r *gin.Engine) {
 	r.GET("/signup", controller.SignUpView)
+	r.POST("/signup", controller.SignUp)
 }
 
 func (controller *AuthController) SignUpView(ctx *gin.Context) {
