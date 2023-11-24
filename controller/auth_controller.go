@@ -59,7 +59,7 @@ func (controller *AuthController) SignUp(ctx *gin.Context) {
 	if err == nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"status":  "failure",
-			"message": "Email is already registered",
+			"message": "Email sudah terdaftar",
 		})
 
 		return
