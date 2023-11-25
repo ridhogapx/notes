@@ -1,7 +1,7 @@
 package model
 
 type User struct {
-	ID       string
+	ID       string `gorm:"primaryKey"`
 	Email    string
 	Password string
 	Name     string
