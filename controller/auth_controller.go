@@ -96,7 +96,7 @@ func (controller *AuthController) SignUp(ctx *gin.Context) {
 
 	// if success, we need redirect it into Home.
 	ctx.JSON(http.StatusCreated, gin.H{
-		"status":  "failure",
+		"status":  "success",
 		"message": "Berhasil mendaftarkan",
 	})
 }
