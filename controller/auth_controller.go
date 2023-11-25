@@ -3,7 +3,7 @@ package controller
 import (
 	"fmt"
 	"net/http"
-	"notes/helper"
+	"notes/lib"
 	"notes/model"
 	"notes/repository"
 
@@ -76,7 +76,7 @@ func (controller *AuthController) SignUp(ctx *gin.Context) {
 	// If not yet, then user can register
 
 	// We need to hash password before insert into database.
-	hash := helper.HashPassword(payload.Password)
+	hash := lib.HashPassword(payload.Password)
 
 	// Generate unique ID
 	id := uuid.New().String()
