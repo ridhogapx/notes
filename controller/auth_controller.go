@@ -64,7 +64,7 @@ func (controller *AuthController) SignUp(ctx *gin.Context) {
 	// Check if user is already registered
 	user, _ := controller.Repos.FindUser(payload.Email)
 
-	if user == nil {
+	if user != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"status":  "failure",
 			"message": "Email sudah terdaftar",
