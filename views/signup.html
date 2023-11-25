@@ -21,9 +21,11 @@
           <div class="card p-3" style="width: 25rem; margin: 0 auto;">
             <div class="card-body">
               <h5 class="card-title text-center fw-bold">Sign Up</h5>
-              <form>
                 <div class="mb-3">
                   <input type="email" class="form-control" id="email" placeholder="Email">
+                </div>
+                <div class="mb-3">
+                  <input type="text" class="form-control" id="name" placeholder="Name">
                 </div>
                 <div class="mb-3">
                   <input type="password" class="form-control" id="pass" placeholder="Password">
@@ -32,7 +34,6 @@
                   <input type="password" class="form-control" id="confpass" placeholder="Konfirmasi Password">
                 </div>
                 <button id="btn" class="btn btn-primary" style="width: 100%;">Sign Up</button>
-              </form>
             </div>
           </div>
         </div>
@@ -54,21 +55,24 @@
     <script src="{{.popper}}"></script>
     <script src="{{ .script }}"></script>
     <script>
-      const formData = {
-        email: document.getElementById("email").value,
-        password: document.getElementById("pass").value,
-        confpass: document.getElementById("confpass").value
-      }
 
-      const toastElement = document.getElementById("msgToast")
-      const titleToaster = document.getElementById("title-toaster")
-      const msgToaster = document.getElementById("msg-toaster")
+    document.addEventListener("DOMContentLoaded", function() {
+        // Form Data
+      const name = document.querySelector("#name");
+      const email = document.querySelector("#email");
+      const pass = document.querySelector("#pass");
+      const confpass = document.querySelector("#confpass");
 
-      const btn = document.getElementById("btn")
-      btn.addEventListener("click", async(e) => {
-      e.preventDefault()
+      const toastElement = document.getElementById("msgToast");
+      const titleToaster = document.getElementById("title-toaster");
+      const msgToaster = document.getElementById("msg-toaster");
 
-      if (formData.confpass != formData.password) {
+      const btn = document.getElementById("btn");
+
+      btn.addEventListener("click", async function(e)  {
+      e.preventDefault();
+
+      if (confpass.value != pass.value) {
           titleToaster.innerText = "Gagal mendaftarkan user"
           msgToaster.innerText = "Mohon konfirmasikan ulang password anda"
 
@@ -77,20 +81,23 @@
           return
         }
 
-        const doSignUp = await fetch("/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type" : "application/json"
-          },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password
-          })
+      const doSignUp = await fetch("/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({
+          name: name.value,
+          email: email.value,
+          password: password.value,
         })
-
-        console.log(doSignUp.json())
       })
 
+})
+
+    })
+
+      
     </script>
   </body>
 </html>
