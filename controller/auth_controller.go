@@ -8,6 +8,7 @@ import (
 	"notes/repository"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 )
 
 type AuthController struct {
@@ -78,8 +79,10 @@ func (controller *AuthController) SignUp(ctx *gin.Context) {
 	hash := helper.HashPassword(payload.Password)
 
 	// Generate unique ID
+	id := uuid.New().String()
 
 	err = controller.Repos.CreateUser(&model.User{
+		ID:       id,
 		Email:    payload.Email,
 		Password: hash,
 		Name:     payload.Name,
