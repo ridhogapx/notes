@@ -77,9 +77,12 @@ func (controller *AuthController) SignUp(ctx *gin.Context) {
 	// We need to hash password before insert into database.
 	hash := helper.HashPassword(payload.Password)
 
+	// Generate unique ID
+
 	err = controller.Repos.CreateUser(&model.User{
 		Email:    payload.Email,
 		Password: hash,
+		Name:     payload.Name,
 	})
 
 	// Internal logging
