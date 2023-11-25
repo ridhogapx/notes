@@ -86,6 +86,7 @@ func (controller *AuthController) SignUp(ctx *gin.Context) {
 		Email:    payload.Email,
 		Password: hash,
 		Name:     payload.Name,
+		Role:     0,
 	})
 
 	// Internal logging
