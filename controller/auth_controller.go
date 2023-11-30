@@ -7,6 +7,8 @@ import (
 	"notes/model"
 	"notes/repository"
 
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
@@ -100,4 +102,8 @@ func (controller *AuthController) SignUp(ctx *gin.Context) {
 		"status":  "success",
 		"message": "Berhasil mendaftar user baru",
 	})
+}
+
+func (controller *AuthController) SetupSession(cookie cookie.Store, app *gin.Engine) {
+  app.Use(sessions.Sessions("auth_session", cookie))
 }
