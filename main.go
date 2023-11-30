@@ -7,6 +7,7 @@ import (
 	"notes/repository"
 	"os"
 
+	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
@@ -22,14 +23,19 @@ func main() {
   r := gin.Default()
 
   DB_SOURCE := os.Getenv("DB_SOURCE")
-  
+  SECRET := os.Getenv("SECRET")
+
+  store := cookie.NewStore([]byte(SECRET))
+
   dbConn := config.NewDBConnection(DB_SOURCE)
   authRepos := repository.NewAuthRepository(dbConn)
   authController := controller.NewAuthController(authRepos)
 
   r.LoadHTMLGlob("views/*")
 
+  authController.SetupSession(store, r) 
   authController.Routes(r)
+
 
   r.Run(":3000")
 }
