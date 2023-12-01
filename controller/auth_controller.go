@@ -57,6 +57,10 @@ func (controller *AuthController) SignUpView(ctx *gin.Context) {
 func (controller *AuthController) NotesView(ctx *gin.Context) {
 	metaAndAssets.Title = "My Notes"
 
+	s := sessions.Default(ctx)
+	s.Get("user_email")
+	fmt.Println("User Email:", s)
+
 	ctx.HTML(http.StatusOK, "me.html", metaAndAssets)
 }
 
