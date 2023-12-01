@@ -7,35 +7,35 @@ import (
 	"notes/repository"
 	"os"
 
-	"github.com/gin-contrib/sessions/cookie"
+	"github.com/gin-contrib/sessions/redis"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
 
 func main() {
-  err := godotenv.Load(".env")
+	err := godotenv.Load(".env")
 
-  if err != nil {
-    fmt.Println("Failed to load .env")
-    return
-  }
+	if err != nil {
+		fmt.Println("Failed to load .env")
+		return
+	}
 
-  r := gin.Default()
+	r := gin.Default()
 
-  DB_SOURCE := os.Getenv("DB_SOURCE")
-  SECRET := os.Getenv("SECRET")
+	DB_SOURCE := os.Getenv("DB_SOURCE")
+	SECRET := os.Getenv("SECRET")
 
-  store := cookie.NewStore([]byte(SECRET))
+	// Redis Cache Session
+	redisStore, _ := redis.NewStore(10, "tcp", "localhost:6379", "", []byte(SECRET))
 
-  dbConn := config.NewDBConnection(DB_SOURCE)
-  authRepos := repository.NewAuthRepository(dbConn)
-  authController := controller.NewAuthController(authRepos)
+	dbConn := config.NewDBConnection(DB_SOURCE)
+	authRepos := repository.NewAuthRepository(dbConn)
+	authController := controller.NewAuthController(authRepos)
 
-  r.LoadHTMLGlob("views/*")
+	r.LoadHTMLGlob("views/*")
 
-  authController.SetupSession(store, r) 
-  authController.Routes(r)
+	authController.SetupSession(redisStore, r)
+	authController.Routes(r)
 
-
-  r.Run(":3000")
+	r.Run(":3000")
 }

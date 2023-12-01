@@ -8,7 +8,7 @@ import (
 	"notes/repository"
 
 	"github.com/gin-contrib/sessions"
-	"github.com/gin-contrib/sessions/cookie"
+	"github.com/gin-contrib/sessions/redis"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
@@ -114,6 +114,6 @@ func (controller *AuthController) SignUp(ctx *gin.Context) {
 	})
 }
 
-func (controller *AuthController) SetupSession(cookie cookie.Store, app *gin.Engine) {
-	app.Use(sessions.Sessions("auth_session", cookie))
+func (controller *AuthController) SetupSession(redis redis.Store, app *gin.Engine) {
+	app.Use(sessions.Sessions("auth_session", redis))
 }
