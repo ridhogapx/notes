@@ -25,3 +25,16 @@ func (repos *notesRepositoryImpl) CreateNote(note *model.Notes) error {
 
 	return nil
 }
+
+func (repos *notesRepositoryImpl) FindNote(id string) *model.Notes {
+	var data model.Notes
+
+	exec := repos.q.Where("id = ?", id).First(&data)
+
+	if exec.Error != nil {
+		return nil
+	}
+
+	return &data
+
+}
