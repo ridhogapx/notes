@@ -107,6 +107,9 @@ func (controller *AuthController) SignUp(ctx *gin.Context) {
 		return
 	}
 
+	sessions := sessions.Default(ctx)
+	sessions.Set("user_email", payload.Email)
+
 	// if success, we need redirect it into Home.
 	ctx.JSON(http.StatusCreated, gin.H{
 		"status":  "success",
