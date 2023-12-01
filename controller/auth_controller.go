@@ -18,10 +18,10 @@ type AuthController struct {
 }
 
 type MetaAndAssets struct {
-	Title  string
-	Style  string
-	Script string
-	Popper string
+	Title  string `json:"title"`
+	Style  string `json:"style"`
+	Script string `json:"script"`
+	Popper string `json:"popper"`
 }
 
 const (
@@ -49,19 +49,15 @@ func (controller *AuthController) Routes(r *gin.Engine) {
 }
 
 func (controller *AuthController) SignUpView(ctx *gin.Context) {
-	ctx.HTML(http.StatusOK, "signup.html", gin.H{
-		"title":  "Sign Up - Notes",
-		"style":  BootstrapCSS,
-		"script": BootstrapJS,
-		"popper": PopperJS,
-	})
+	metaAndAssets.Title = "Sign Up - Notes"
+
+	ctx.HTML(http.StatusOK, "signup.html", metaAndAssets)
 }
 
 func (controller *AuthController) NotesView(ctx *gin.Context) {
+	metaAndAssets.Title = "My Notes"
 
-	ctx.HTML(http.StatusOK, "me.html", gin.H{
-		"title": "My Notes",
-	})
+	ctx.HTML(http.StatusOK, "me.html", metaAndAssets)
 }
 
 func (controller *AuthController) SignUp(ctx *gin.Context) {
