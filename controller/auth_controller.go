@@ -17,11 +17,24 @@ type AuthController struct {
 	Repos repository.AuthRepository
 }
 
+type MetaAndAssets struct {
+	Title        string
+	BootstrapCSS string
+	BootstrapJS  string
+	PopperJS     string
+}
+
 const (
 	BootstrapCSS = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	BootstrapJS  = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	PopperJS     = "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 )
+
+var metaAndAssets MetaAndAssets = MetaAndAssets{
+	BootstrapCSS: BootstrapCSS,
+	BootstrapJS:  BootstrapJS,
+	PopperJS:     PopperJS,
+}
 
 func NewAuthController(repos repository.AuthRepository) *AuthController {
 	return &AuthController{
@@ -31,7 +44,7 @@ func NewAuthController(repos repository.AuthRepository) *AuthController {
 
 func (controller *AuthController) Routes(r *gin.Engine) {
 	r.GET("/signup", controller.SignUpView)
-	r.GET("/", controller.NotesView)
+	r.GET("/me", controller.NotesView)
 	r.POST("/signup", controller.SignUp)
 }
 
@@ -105,5 +118,5 @@ func (controller *AuthController) SignUp(ctx *gin.Context) {
 }
 
 func (controller *AuthController) SetupSession(cookie cookie.Store, app *gin.Engine) {
-  app.Use(sessions.Sessions("auth_session", cookie))
+	app.Use(sessions.Sessions("auth_session", cookie))
 }
