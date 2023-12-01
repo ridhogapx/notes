@@ -18,10 +18,10 @@ type AuthController struct {
 }
 
 type MetaAndAssets struct {
-	Title        string
-	BootstrapCSS string
-	BootstrapJS  string
-	PopperJS     string
+	Title  string
+	Style  string
+	Script string
+	Popper string
 }
 
 const (
@@ -31,9 +31,9 @@ const (
 )
 
 var metaAndAssets MetaAndAssets = MetaAndAssets{
-	BootstrapCSS: BootstrapCSS,
-	BootstrapJS:  BootstrapJS,
-	PopperJS:     PopperJS,
+	Style:  BootstrapCSS,
+	Script: BootstrapJS,
+	Popper: PopperJS,
 }
 
 func NewAuthController(repos repository.AuthRepository) *AuthController {
@@ -58,6 +58,7 @@ func (controller *AuthController) SignUpView(ctx *gin.Context) {
 }
 
 func (controller *AuthController) NotesView(ctx *gin.Context) {
+
 	ctx.HTML(http.StatusOK, "me.html", gin.H{
 		"title": "My Notes",
 	})
