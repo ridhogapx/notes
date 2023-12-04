@@ -6,3 +6,8 @@ type Note struct {
 	Body   string
 	Author string
 }
+
+type NoteRequest struct {
+	Title string `json:"title"`
+	Body  string `json:"body"`
+}
