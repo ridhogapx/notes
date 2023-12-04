@@ -6,7 +6,6 @@ import (
 	"notes/model"
 	"notes/repository"
 
-	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
@@ -18,7 +17,6 @@ type NoteController struct {
 func (controller *NoteController) AddNote(ctx *gin.Context) {
 	var payload model.NoteRequest
 
-	s := sessions.Default(ctx)
 	ctx.ShouldBind(&payload)
 
 	id := uuid.New().String()
@@ -27,7 +25,7 @@ func (controller *NoteController) AddNote(ctx *gin.Context) {
 		ID:     id,
 		Title:  payload.Title,
 		Body:   payload.Body,
-		Author: s.Get("user_email").(string),
+		Author: payload.Author,
 	})
 
 	if err != nil {
