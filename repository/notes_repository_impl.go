@@ -16,7 +16,7 @@ func NewNoteRepository(db *gorm.DB) NoteRepository {
 	}
 }
 
-func (repos *notesRepositoryImpl) CreateNote(note *model.Notes) error {
+func (repos *notesRepositoryImpl) CreateNote(note *model.Note) error {
 	exec := repos.q.Create(note)
 
 	if exec.Error != nil {
@@ -26,8 +26,8 @@ func (repos *notesRepositoryImpl) CreateNote(note *model.Notes) error {
 	return nil
 }
 
-func (repos *notesRepositoryImpl) FindNote(id string) *model.Notes {
-	var data model.Notes
+func (repos *notesRepositoryImpl) FindNote(id string) *model.Note {
+	var data model.Note
 
 	exec := repos.q.Where("id = ?", id).First(&data)
 

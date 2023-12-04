@@ -1,6 +1,6 @@
 package model
 
-type Notes struct {
+type Note struct {
 	ID     string `gorm:"primaryKey"`
 	Title  string
 	Body   string
