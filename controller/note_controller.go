@@ -14,6 +14,16 @@ type NoteController struct {
 	Repos repository.NoteRepository
 }
 
+func NewNoteController(repos repository.NoteRepository) *NoteController {
+	return &NoteController{
+		Repos: repos,
+	}
+}
+
+func (controller *NoteController) Routes(app *gin.Engine) {
+	app.POST("/note", controller.AddNote)
+}
+
 func (controller *NoteController) AddNote(ctx *gin.Context) {
 	var payload model.NoteRequest
 
