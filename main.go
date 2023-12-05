@@ -26,7 +26,11 @@ func main() {
 	SECRET := os.Getenv("SECRET")
 
 	// Redis Cache Session
-	redisStore, _ := redis.NewStore(10, "tcp", "172.17.0.3:6379", "", []byte(SECRET))
+	redisSource := config.RedisConfig{
+		Address: os.Getenv("REDIS_ADDRESS"),
+		Port:    os.Getenv("REDIS_PORT"),
+	}
+	redisStore, _ := redis.NewStore(10, "tcp", fmt.Sprintf("%s:%s", redisSource.Address, redisSource.Port), "", []byte(SECRET))
 
 	dbConn := config.NewDBConnection(DB_SOURCE)
 	authRepos := repository.NewAuthRepository(dbConn)
