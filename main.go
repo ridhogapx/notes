@@ -33,7 +33,7 @@ func main() {
 	redisStore, _ := redis.NewStore(10, "tcp", fmt.Sprintf("%s:%s", redisSource.Address, redisSource.Port), "", []byte(SECRET))
 
 	dbConn := config.NewDBConnection(DB_SOURCE)
-	authRepos := repository.NewAuthRepository(dbConn)
+	authRepos, _ := repository.NewRepository(dbConn)
 	authController := controller.NewAuthController(authRepos)
 
 	r.LoadHTMLGlob("views/*")

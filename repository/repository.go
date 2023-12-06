@@ -3,7 +3,9 @@ package repository
 import "gorm.io/gorm"
 
 func NewRepository(db *gorm.DB) (AuthRepository, NoteRepository) {
-	return &repositoryImpl{
+	repos := &repositoryImpl{
 		q: db,
 	}
+
+	return repos, repos
 }
