@@ -2,21 +2,9 @@ package repository
 
 import (
 	"notes/model"
-
-	"gorm.io/gorm"
 )
 
-type notesRepositoryImpl struct {
-	q *gorm.DB
-}
-
-func NewNoteRepository(db *gorm.DB) NoteRepository {
-	return &notesRepositoryImpl{
-		q: db,
-	}
-}
-
-func (repos *notesRepositoryImpl) CreateNote(note *model.Note) error {
+func (repos *repositoryImpl) CreateNote(note *model.Note) error {
 	exec := repos.q.Create(note)
 
 	if exec.Error != nil {
@@ -26,7 +14,7 @@ func (repos *notesRepositoryImpl) CreateNote(note *model.Note) error {
 	return nil
 }
 
-func (repos *notesRepositoryImpl) FindNote(id string) *model.Note {
+func (repos *repositoryImpl) FindNote(id string) *model.Note {
 	var data model.Note
 
 	exec := repos.q.Where("id = ?", id).First(&data)

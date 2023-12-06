@@ -7,17 +7,11 @@ import (
 	"gorm.io/gorm"
 )
 
-type authRepositoryImpl struct {
+type repositoryImpl struct {
 	q *gorm.DB
 }
 
-func NewAuthRepository(db *gorm.DB) AuthRepository {
-	return &authRepositoryImpl{
-		q: db,
-	}
-}
-
-func (repo *authRepositoryImpl) CreateUser(user *model.User) error {
+func (repo *repositoryImpl) CreateUser(user *model.User) error {
 	exec := repo.q.Create(user)
 
 	if exec.Error != nil {
@@ -27,7 +21,7 @@ func (repo *authRepositoryImpl) CreateUser(user *model.User) error {
 	return nil
 }
 
-func (repo *authRepositoryImpl) FindUser(email string) (*model.User, error) {
+func (repo *repositoryImpl) FindUser(email string) (*model.User, error) {
 	var user model.User
 
 	exec := repo.q.Where("email = ?", email).First(&user)
