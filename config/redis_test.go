@@ -8,7 +8,11 @@ import (
 )
 
 func TestRedisStore(t *testing.T) {
+	// @RageNeko26
+	// Below test should "pass" if store initiator is established
 	// Example hard coded connection
+	// Our objective is to cache with minimal expiration
+	// Because long expiration will affect API Perfomance.
 	conf := RedisConfig{
 		Address: "172.17.0.3",
 		Port:    "6379",
